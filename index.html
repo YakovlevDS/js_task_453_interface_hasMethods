@@ -10,33 +10,28 @@
 <body>
     <h1>Look at the console F12</h1>
     <pre>
-        Here are some classic Christmas cracker jokes.
+      You probably know, that in Javascript (and also Ruby) there is no concept of interfaces. There is only a concept of inheritance, but you can't assume that a certain method or property exists, just because it exists in the parent prototype / class. We want to find out, whether a given object fulfils the requirements to implement the "SantaClausable" interface. We need to implement a method which checks for this interface.
 
-        There is a made up API URL (http://great.jokes/christmas) that you can call to a get list of Christmas jokes in JSON format.
-        
-        Your challenge
-        Write an async function which takes an apiUrl and jokeId which returns a promise.
-        The data will need to be filtered to get the specified joke by id.
-        When you got the joke it should be accessible through a simple API of saySetup and sayPunchLine methods.
-        Handle error cases
-        
-        If a joke can't be found throw an error message in this format new Error('No jokes found id: {jokeId}').
-        Getting jokes from a another API URL may return a different data shape, throw this error message new Error('No jokes at url: {url}') for an unexpected shape.
-        Throw error in a promise style
-        
-        Info
-        Get the data using the mocked fetch(url) function, which implements the basics of the fetch api. Learn about fetch. Learn about async/await.
-        
-        Joke data shape:
-        
-        {
-          jokes: [{ 
-            id: 101,
-            setup: "Who is Santa's favorite singer?",
-            punchLine: "Elf-is Presley!"
-          },
-        ...moreJokes]
-        // Use for your tests ^^
+      Rules
+      The SantaClausable interface is implemented, if all of the following methods are defined on an object:
+      
+      sayHoHoHo() / say_ho_ho_ho
+      distributeGifts() / distribute_gifts
+      goDownTheChimney() / go_down_the_chimney
+      Example
+      var santa = {
+          sayHoHoHo: function() { console.log('Ho Ho Ho!') },
+          distributeGifts: function() { console.log('Gifts for all!'); },
+          goDownTheChimney: function() { console.log('*whoosh*'); }
+      };
+      
+      var notSanta = {
+          sayHoHoHo: function() { console.log('Oink Oink!') }
+          // no distributeGifts() and no goDownTheChimney()
+      };
+      
+      isSantaClausable(santa); // must return TRUE
+      isSantaClausable(notSanta); // must return FALSE
     </pre>
 </body>
 </html>
